@@ -125,4 +125,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Displays hello world.
+     *
+     * @return string
+     */
+    public function actionHola($mensaje = 'Hola')
+    {
+        return $this->render('hola', ['mensaje' => $mensaje]);
+    }
 }
