@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\RegistroForm;
 
 class SiteController extends Controller
 {
@@ -134,5 +135,21 @@ class SiteController extends Controller
     public function actionHola($mensaje = 'Hola')
     {
         return $this->render('hola', ['mensaje' => $mensaje]);
+    }
+
+    public function actionRegistro()
+    {
+        $model = new RegistroForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // valid data received in $model
+
+            // do something meaningful here about $model ...
+
+            return $this->render('registro-ok', ['model' => $model]);
+        } else {
+            // either the page is initially displayed or there is some validation error
+            return $this->render('registro', ['model' => $model]);
+        }
     }
 }
