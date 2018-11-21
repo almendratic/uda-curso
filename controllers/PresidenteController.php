@@ -14,6 +14,9 @@ use yii\filters\VerbFilter;
  */
 class PresidenteController extends Controller
 {
+
+    public $layout = 'uda';
+
     /**
      * {@inheritdoc}
      */
