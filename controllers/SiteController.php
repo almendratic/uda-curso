@@ -127,8 +127,16 @@ class SiteController extends Controller
         $presidentes = Yii::$app->db->createCommand('SELECT * FROM presidente')
             ->queryAll();
 
+        $presidentesQB = (new \yii\db\Query())
+            ->select(['codigo', 'nombre', 'anio'])
+            ->from('presidente')
+            ->where(['anio' => '2003'])
+            ->limit(10)
+            ->all();
+
         return $this->render('about', [
-            'presidentes' => $presidentes
+            'presidentes' => $presidentes,
+            'presidentesQB' => $presidentesQB
         ]);
     }
 

@@ -16,8 +16,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <code><?= __FILE__ ?></code>
 
+    <h2>DAO</h2>
     <ul>
     <?php foreach ($presidentes as $presidente): ?>
+    	<li>
+    		<?= $presidente['nombre'] ?>
+    		<?= $presidente['anio'] ?>
+    	</li>	
+    <?php endforeach; ?>
+	</ul>
+
+	<h2>Query Builder</h2>
+    <ul>
+    <?php foreach ($presidentesQB as $presidente): ?>
     	<li>
     		<?= $presidente['nombre'] ?>
     		<?= $presidente['anio'] ?>
