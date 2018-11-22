@@ -15,4 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <code><?= __FILE__ ?></code>
+
+    <ul>
+    <?php foreach ($presidentes as $presidente): ?>
+    	<li>
+    		<?= $presidente['nombre'] ?>
+    		<?= $presidente['anio'] ?>
+    	</li>	
+    <?php endforeach; ?>
+	</ul>
 </div>

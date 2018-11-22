@@ -124,7 +124,12 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $presidentes = Yii::$app->db->createCommand('SELECT * FROM presidente')
+            ->queryAll();
+
+        return $this->render('about', [
+            'presidentes' => $presidentes
+        ]);
     }
 
     /**
