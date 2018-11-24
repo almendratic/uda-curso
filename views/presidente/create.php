@@ -16,6 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'ciudades' => $ciudades
     ]) ?>
+
+    <pre>
+    	<?php print_r($ciudades) ?>
+    </pre>
 
 </div>

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'codigo',
             'nombre',
             'anio',
+            'ciudad.nombre'
         ],
     ]) ?>
 

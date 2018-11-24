@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Presidente;
+use app\models\Ciudad;
 
 /**
- * PresidenteSearch represents the model behind the search form of `app\models\Presidente`.
+ * CiudadSearch represents the model behind the search form of `app\models\Ciudad`.
  */
-class PresidenteSearch extends Presidente
+class CiudadSearch extends Ciudad
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,6 @@ class PresidenteSearch extends Presidente
     {
         return [
             [['codigo', 'nombre'], 'safe'],
-            [['anio'], 'integer'],
         ];
     }
 
@@ -41,8 +40,7 @@ class PresidenteSearch extends Presidente
      */
     public function search($params)
     {
-        $query = Presidente::find()
-            ->with('ciudad');
+        $query = Ciudad::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +57,6 @@ class PresidenteSearch extends Presidente
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'anio' => $this->anio,
-        ]);
-
         $query->andFilterWhere(['like', 'codigo', $this->codigo])
             ->andFilterWhere(['like', 'nombre', $this->nombre]);
 

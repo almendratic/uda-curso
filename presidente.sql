@@ -14,3 +14,9 @@ INSERT INTO `presidente` VALUES ('LG','Lucio Gutiérrez Borbúa',2003);
 INSERT INTO `presidente` VALUES ('AP','Alfredo Palacio González',2003);
 INSERT INTO `presidente` VALUES ('RC','Rafael Correa Delgado',2007);
 INSERT INTO `presidente` VALUES ('LM','Lenín Moreno Garcés',2017);
+
+
+
+ALTER TABLE `presidente` ADD `ciudad_codigo` CHAR(3) NULL DEFAULT NULL AFTER `anio`;
+
+ALTER TABLE `presidente` ADD CONSTRAINT `ciudad_codigo` FOREIGN KEY (`ciudad_codigo`) REFERENCES `ciudad`(`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;

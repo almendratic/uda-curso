@@ -4,20 +4,18 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Ciudad;
-use app\models\Presidente;
-use app\models\PresidenteSearch;
+use app\models\CiudadSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PresidenteController implements the CRUD actions for Presidente model.
+ * CiudadController implements the CRUD actions for Ciudad model.
  */
-class PresidenteController extends Controller
+class CiudadController extends Controller
 {
-
     public $layout = 'uda';
-
+    
     /**
      * {@inheritdoc}
      */
@@ -34,12 +32,12 @@ class PresidenteController extends Controller
     }
 
     /**
-     * Lists all Presidente models.
+     * Lists all Ciudad models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PresidenteSearch();
+        $searchModel = new CiudadSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,44 +47,45 @@ class PresidenteController extends Controller
     }
 
     /**
-     * Displays a single Presidente model.
+     * Displays a single Ciudad model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $ciudad = $this->findModel($id);
+        //$presidentes = $ciudad->presidentes;
+        $presidentes = $ciudad->getPresidentes()
+            ->where(['anio' => 2003])
+            ->all();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $ciudad,
+            'presidentes' => $presidentes
         ]);
     }
 
     /**
-     * Creates a new Presidente model.
+     * Creates a new Ciudad model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Presidente();
+        $model = new Ciudad();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->codigo]);
         }
 
-        $ciudades = Ciudad::find()
-            ->select(['nombre'])
-            ->indexBy('codigo')
-            ->column();
-
         return $this->render('create', [
             'model' => $model,
-            'ciudades' => $ciudades
         ]);
     }
 
     /**
-     * Updates an existing Presidente model.
+     * Updates an existing Ciudad model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -100,19 +99,13 @@ class PresidenteController extends Controller
             return $this->redirect(['view', 'id' => $model->codigo]);
         }
 
-        $ciudades = Ciudad::find()
-            ->select(['nombre'])
-            ->indexBy('codigo')
-            ->column();
-
         return $this->render('update', [
             'model' => $model,
-            'ciudades' => $ciudades
         ]);
     }
 
     /**
-     * Deletes an existing Presidente model.
+     * Deletes an existing Ciudad model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -126,15 +119,15 @@ class PresidenteController extends Controller
     }
 
     /**
-     * Finds the Presidente model based on its primary key value.
+     * Finds the Ciudad model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Presidente the loaded model
+     * @return Ciudad the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Presidente::findOne($id)) !== null) {
+        if (($model = Ciudad::findOne($id)) !== null) {
             return $model;
         }
 

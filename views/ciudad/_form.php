@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Presidente */
+/* @var $model app\models\Ciudad */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="presidente-form">
+<div class="ciudad-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -16,14 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'anio')->textInput() ?>
-
-    <?= $form->field($model, 'ciudad_codigo')->dropdownList($ciudades,
-		['prompt'=>'Selecciona una ciudad']
-	) ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
